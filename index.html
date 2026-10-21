@@ -125,6 +125,41 @@
                                     class="w-full border border-slate-300 rounded-xl px-3 py-2 text-slate-800 focus:ring-2 focus:ring-blue-500/20 focus:border-blue-600 outline-none transition">
                             </div>
                         </div>
+
+                        <!-- Paragraf Kompetensi & Isi Surat (Fleksibel per Lamaran) -->
+                        <div class="pt-3 border-t border-slate-100 space-y-2">
+                            <div class="flex items-center justify-between gap-2">
+                                <label for="profCompetency" class="block font-semibold text-slate-700 text-xs sm:text-sm">
+                                    Paragraf Kompetensi / Latar Belakang <span class="text-slate-400 font-normal">(opsional)</span>
+                                </label>
+                                <span id="competencyStatusBadge"
+                                    class="text-[10px] font-semibold px-2 py-0.5 rounded bg-blue-50 text-blue-700 border border-blue-200 shrink-0">
+                                    Default Aktif
+                                </span>
+                            </div>
+
+                            <div class="flex items-center justify-between text-[11px] text-slate-500">
+                                <span>Fleksibel menyesuaikan pekerjaan:</span>
+                                <div class="flex items-center gap-2">
+                                    <button type="button" id="btnFillDefaultComp"
+                                        class="text-blue-600 hover:text-blue-800 font-medium hover:underline">
+                                        Muat Kalimat Bawaan
+                                    </button>
+                                    <span class="text-slate-300">·</span>
+                                    <button type="button" id="btnClearComp"
+                                        class="text-slate-400 hover:text-rose-600 font-medium hover:underline">
+                                        Kosongkan
+                                    </button>
+                                </div>
+                            </div>
+
+                            <textarea id="profCompetency" rows="4"
+                                class="w-full border border-slate-300 rounded-xl p-2.5 text-xs text-slate-800 placeholder-slate-400 focus:ring-2 focus:ring-blue-500/20 focus:border-blue-600 outline-none transition leading-relaxed"
+                                placeholder="Kosongkan jika ingin memakai kalimat default D-III Rekam Medis. Atau tulis kustomisasi kompetensi sesuai pekerjaan yang dilamar..."></textarea>
+                            <p class="text-[11px] text-slate-400 leading-tight">
+                                💡 <b>Fleksibel:</b> Paragraf ini dicetak pada Surat Lamaran. Jika tidak diisi, surat otomatis tetap memakai kalimat bawaan: <i>&ldquo;Saya merupakan lulusan D-III Rekam Medis... pelayanan kesehatan.&rdquo;</i>
+                            </p>
+                        </div>
                     </div>
                 </div>
 
@@ -184,23 +219,10 @@
                                 class="w-full border border-slate-300 rounded-xl px-3 py-2 text-slate-800 focus:ring-2 focus:ring-blue-500/20 focus:border-blue-600 outline-none transition">
                         </div>
 
-                        <!-- Paragraf Kompetensi / Badan Surat -->
-                        <details class="pt-2 border-t border-slate-100">
-                            <summary
-                                class="cursor-pointer text-xs font-semibold text-blue-600 hover:text-blue-700 select-none flex items-center justify-between">
-                                <span>Kustomisasi Paragraf Kompetensi & Isi Surat</span>
-                                <span class="text-[10px] bg-blue-50 text-blue-600 px-2 py-0.5 rounded">Opsional</span>
-                            </summary>
-                            <div class="mt-3 space-y-2">
-                                <label class="block text-xs font-semibold text-slate-600">Paragraf Latar Belakang &
-                                    Kompetensi</label>
-                                <textarea id="profCompetency" rows="4"
-                                    class="w-full border border-slate-300 rounded-xl p-2.5 text-xs text-slate-800 focus:ring-2 focus:ring-blue-500/20 focus:border-blue-600 outline-none transition leading-relaxed"
-                                    placeholder="Deskripsi keahlian dan kompetensi Anda">Saya merupakan lulusan D-III Rekam Medis dan Informasi Kesehatan dari Poltekkes Kemenkes Malang. Saya memiliki pemahaman dalam pendaftaran pasien, komunikasi efektif, pengelolaan rekam medis & Rekam Medis Elektronik (RME), serta pengkodean penyakit (ICD-10 & ICD-9-CM) sesuai standar regulasi pelayanan kesehatan.</textarea>
-                                <p class="text-[11px] text-slate-400">Paragraf ini akan dicetak langsung pada tubuh
-                                    Surat Lamaran.</p>
-                            </div>
-                        </details>
+                        <!-- Info Paragraf Kompetensi -->
+                        <div class="pt-2 border-t border-slate-100 text-[11px] text-slate-500">
+                            💡 Paragraf kompetensi dapat disesuaikan pada panel <b>Target Lamaran Kerja</b> di atas.
+                        </div>
                     </div>
                 </div>
 
@@ -224,17 +246,35 @@
                         </span>
                     </div>
 
+                    <!-- Info Urutan & Tombol Tambah Dokumen Baru -->
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 p-3 bg-blue-50/60 rounded-xl border border-blue-100">
+                        <div class="text-xs text-slate-600">
+                            <span class="font-bold text-slate-800">Urutan Berkas:</span> Tekan tombol <span class="font-bold text-blue-600">▲</span> / <span class="font-bold text-blue-600">▼</span> untuk mengatur susunan urutan halaman PDF.
+                        </div>
+                        <button type="button" id="btnOpenAddDocModal"
+                            class="inline-flex items-center justify-center gap-1.5 px-3.5 py-1.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-xs font-semibold shadow-xs transition shrink-0">
+                            <span>➕</span> Tambah Dokumen Lain
+                        </button>
+                    </div>
+
                     <!-- List Berkas Master -->
                     <div class="space-y-3" id="filesListContainer">
                         <!-- Dynamic file items generated by JS for consistency -->
                     </div>
 
-                    <div class="pt-2 text-xs text-slate-400 flex items-center justify-between">
+                    <div class="pt-2 text-xs text-slate-400 flex flex-wrap items-center justify-between gap-2 border-t border-slate-100">
                         <span>💡 Tip: Centang berkas yang ingin disertakan ke dalam bundel PDF.</span>
-                        <button type="button" id="btnClearAllFiles"
-                            class="text-rose-500 hover:text-rose-700 font-medium">
-                            Kosongkan Semua
-                        </button>
+                        <div class="flex items-center gap-3">
+                            <button type="button" id="btnResetDocOrder"
+                                class="text-blue-600 hover:text-blue-800 font-medium">
+                                ↺ Reset Urutan
+                            </button>
+                            <span class="text-slate-300">|</span>
+                            <button type="button" id="btnClearAllFiles"
+                                class="text-rose-500 hover:text-rose-700 font-medium">
+                                Kosongkan Semua Berkas
+                            </button>
+                        </div>
                     </div>
                 </div>
 
@@ -383,6 +423,81 @@
         </div>
     </div>
 
+    <!-- Modal Tambah Dokumen Baru -->
+    <div id="addDocModal"
+        class="fixed inset-0 z-50 bg-slate-900/80 backdrop-blur-sm hidden flex items-center justify-center p-3 sm:p-6">
+        <div class="bg-white rounded-2xl w-full max-w-lg shadow-2xl overflow-hidden border border-slate-200">
+            <!-- Modal Header -->
+            <div class="p-4 border-b border-slate-200 flex items-center justify-between bg-slate-50">
+                <div class="flex items-center gap-2">
+                    <span class="inline-flex items-center justify-center w-7 h-7 rounded-lg bg-blue-100 text-blue-600 font-bold text-sm">➕</span>
+                    <h3 class="font-bold text-slate-800 text-sm sm:text-base">Tambah Berkas Dokumen Persyaratan</h3>
+                </div>
+                <button type="button" id="btnCloseAddDocModal"
+                    class="w-8 h-8 rounded-lg bg-slate-200 hover:bg-slate-300 text-slate-600 flex items-center justify-center font-bold text-lg transition">
+                    &times;
+                </button>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="p-5 space-y-4">
+                <div>
+                    <label class="block font-semibold text-slate-700 text-xs sm:text-sm mb-1">
+                        Nama Berkas Dokumen <span class="text-rose-500">*</span>
+                    </label>
+                    <input type="text" id="newDocName" placeholder="Contoh: SKCK (Surat Keterangan Catatan Kepolisian)"
+                        class="w-full border border-slate-300 rounded-xl px-3.5 py-2.5 text-xs sm:text-sm text-slate-800 placeholder-slate-400 focus:ring-2 focus:ring-blue-500/20 focus:border-blue-600 outline-none transition font-medium">
+                </div>
+
+                <!-- Rekomendasi Pilihan Cepat -->
+                <div>
+                    <label class="block text-[11px] font-semibold text-slate-500 mb-1.5">Pilihan Cepat (Klik untuk memilih):</label>
+                    <div class="flex flex-wrap gap-1.5" id="quickDocChips">
+                        <button type="button" class="chip-btn text-[11px] px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-blue-50 hover:text-blue-700 hover:border-blue-300 text-slate-700 border border-slate-200 transition font-medium" data-name="SKCK (Surat Keterangan Catatan Kepolisian)" data-icon="📜">SKCK</button>
+                        <button type="button" class="chip-btn text-[11px] px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-blue-50 hover:text-blue-700 hover:border-blue-300 text-slate-700 border border-slate-200 transition font-medium" data-name="Sertifikat Pelatihan / Workshop" data-icon="📜">Sertifikat Pelatihan</button>
+                        <button type="button" class="chip-btn text-[11px] px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-blue-50 hover:text-blue-700 hover:border-blue-300 text-slate-700 border border-slate-200 transition font-medium" data-name="Surat Pengalaman Kerja (Paklaring)" data-icon="💼">Surat Pengalaman Kerja</button>
+                        <button type="button" class="chip-btn text-[11px] px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-blue-50 hover:text-blue-700 hover:border-blue-300 text-slate-700 border border-slate-200 transition font-medium" data-name="Salinan Kartu Tanda Penduduk (KTP)" data-icon="🪪">Scan KTP</button>
+                        <button type="button" class="chip-btn text-[11px] px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-blue-50 hover:text-blue-700 hover:border-blue-300 text-slate-700 border border-slate-200 transition font-medium" data-name="Surat Keterangan Sehat Dokter" data-icon="🏥">Surat Sehat Dokter</button>
+                        <button type="button" class="chip-btn text-[11px] px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-blue-50 hover:text-blue-700 hover:border-blue-300 text-slate-700 border border-slate-200 transition font-medium" data-name="Surat Bebas Narkoba (NAPZA)" data-icon="🩺">Surat Bebas Narkoba</button>
+                        <button type="button" class="chip-btn text-[11px] px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-blue-50 hover:text-blue-700 hover:border-blue-300 text-slate-700 border border-slate-200 transition font-medium" data-name="Portofolio Proyek & Sertifikasi" data-icon="📁">Portofolio</button>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                        <label class="block font-semibold text-slate-700 text-xs mb-1">Tipe Format Berkas</label>
+                        <select id="newDocFormat" class="w-full border border-slate-300 rounded-xl px-3 py-2 text-xs text-slate-800 focus:ring-2 focus:ring-blue-500/20 focus:border-blue-600 outline-none transition bg-white">
+                            <option value="both">PDF atau Gambar (JPG/PNG)</option>
+                            <option value="pdf">Hanya PDF (.pdf)</option>
+                            <option value="image">Hanya Gambar (.jpg, .png)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block font-semibold text-slate-700 text-xs mb-1">Pilih Ikon</label>
+                        <div class="flex items-center gap-1.5 flex-wrap" id="newDocIconPicker">
+                            <button type="button" class="icon-opt w-8 h-8 rounded-lg border-2 border-blue-600 bg-blue-50 flex items-center justify-center text-sm" data-icon="📜">📜</button>
+                            <button type="button" class="icon-opt w-8 h-8 rounded-lg border border-slate-200 hover:bg-slate-100 flex items-center justify-center text-sm" data-icon="📄">📄</button>
+                            <button type="button" class="icon-opt w-8 h-8 rounded-lg border border-slate-200 hover:bg-slate-100 flex items-center justify-center text-sm" data-icon="📑">📑</button>
+                            <button type="button" class="icon-opt w-8 h-8 rounded-lg border border-slate-200 hover:bg-slate-100 flex items-center justify-center text-sm" data-icon="🪪">🪪</button>
+                            <button type="button" class="icon-opt w-8 h-8 rounded-lg border border-slate-200 hover:bg-slate-100 flex items-center justify-center text-sm" data-icon="💼">💼</button>
+                            <button type="button" class="icon-opt w-8 h-8 rounded-lg border border-slate-200 hover:bg-slate-100 flex items-center justify-center text-sm" data-icon="🏥">🏥</button>
+                            <button type="button" class="icon-opt w-8 h-8 rounded-lg border border-slate-200 hover:bg-slate-100 flex items-center justify-center text-sm" data-icon="📁">📁</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pt-3 flex items-center justify-end gap-2 border-t border-slate-100">
+                    <button type="button" id="btnCancelAddDoc" class="px-4 py-2 rounded-xl text-xs font-semibold text-slate-600 hover:bg-slate-100 transition">
+                        Batal
+                    </button>
+                    <button type="button" id="btnConfirmAddDoc" class="px-5 py-2 rounded-xl text-xs font-bold text-white bg-blue-600 hover:bg-blue-700 shadow-md transition flex items-center gap-1.5">
+                        <span>✓</span> Tambahkan ke Daftar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Notification Toast -->
     <div id="toastNotification"
         class="fixed bottom-5 right-5 z-50 transform translate-y-24 opacity-0 transition-all duration-300 pointer-events-none">
@@ -396,58 +511,95 @@
     <!-- Application Script -->
     <script>
         // --- MASTER DATA DEFINITIONS ---
-        const MASTER_DOCS = [
+        const DEFAULT_MASTER_DOCS = [
             {
                 id: 'fileCv',
                 key: 'cv',
-                label: '1. Curriculum Vitae (CV) / Riwayat Hidup',
+                name: 'Curriculum Vitae (CV) / Riwayat Hidup',
                 shortName: 'Curriculum Vitae (CV) / Daftar Riwayat Hidup',
-                accept: 'application/pdf',
-                type: 'pdf',
                 emailName: 'Curriculum Vitae (CV)',
-                icon: '📄'
+                accept: 'application/pdf',
+                acceptDesc: 'PDF',
+                type: 'pdf',
+                icon: '📄',
+                isCustom: false,
+                isPhoto: false
             },
             {
                 id: 'fileIjazah',
                 key: 'ijazah',
-                label: '2. Salinan Ijazah / SKL Asli',
+                name: 'Salinan Ijazah / SKL Asli',
                 shortName: 'Salinan Ijazah / Surat Keterangan Lulus (SKL)',
-                accept: 'application/pdf',
-                type: 'pdf',
                 emailName: 'Surat Keterangan Lulus (SKL)',
-                icon: '🎓'
+                accept: 'application/pdf',
+                acceptDesc: 'PDF',
+                type: 'pdf',
+                icon: '🎓',
+                isCustom: false,
+                isPhoto: false
             },
             {
                 id: 'fileTranskrip',
                 key: 'transkrip',
-                label: '3. Salinan Transkrip Nilai Akademik',
+                name: 'Salinan Transkrip Nilai Akademik',
                 shortName: 'Salinan Transkrip Nilai Akademik',
-                accept: 'application/pdf',
-                type: 'pdf',
                 emailName: 'Transkrip Akademik',
-                icon: '📊'
+                accept: 'application/pdf',
+                acceptDesc: 'PDF',
+                type: 'pdf',
+                icon: '📊',
+                isCustom: false,
+                isPhoto: false
             },
             {
                 id: 'fileStr',
                 key: 'str',
-                label: '4. STR / Sertifikat Kompetensi Pendukung',
+                name: 'STR / Sertifikat Kompetensi Pendukung',
                 shortName: 'STR dan Sertifikat Kompetensi Pendukung',
-                accept: 'application/pdf',
-                type: 'pdf',
                 emailName: 'STR dan Sertifikat Kompetensi Pendukung',
-                icon: '📜'
+                accept: 'application/pdf',
+                acceptDesc: 'PDF',
+                type: 'pdf',
+                icon: '📜',
+                isCustom: false,
+                isPhoto: false
             },
             {
                 id: 'fileFoto',
                 key: 'foto',
-                label: '5. Pasfoto Terbaru (Background Rapi)',
+                name: 'Pasfoto Terbaru (Background Rapi)',
                 shortName: 'Pasfoto Terbaru',
-                accept: 'image/jpeg,image/png,image/webp,image/jpg',
-                type: 'image',
                 emailName: 'Pasfoto Terbaru',
-                icon: '🖼️'
+                accept: 'image/jpeg,image/png,image/webp,image/jpg',
+                acceptDesc: 'JPG/PNG',
+                type: 'image',
+                icon: '🖼️',
+                isCustom: false,
+                isPhoto: true
             }
         ];
+
+        let masterDocs = [];
+
+        function loadMasterDocs() {
+            try {
+                const saved = localStorage.getItem('job_bundle_master_docs');
+                if (saved) {
+                    masterDocs = JSON.parse(saved);
+                } else {
+                    masterDocs = JSON.parse(JSON.stringify(DEFAULT_MASTER_DOCS));
+                }
+            } catch (e) {
+                masterDocs = JSON.parse(JSON.stringify(DEFAULT_MASTER_DOCS));
+            }
+        }
+
+        function saveMasterDocs() {
+            localStorage.setItem('job_bundle_master_docs', JSON.stringify(masterDocs));
+        }
+
+        // Muat susunan berkas master awal
+        loadMasterDocs();
 
         // --- INDEXEDDB STORAGE WITH IN-MEMORY FALLBACK ---
         const DB_NAME = 'JobDocBundlerDB_v2';
@@ -589,51 +741,92 @@
             const container = document.getElementById('filesListContainer');
             container.innerHTML = '';
 
-            MASTER_DOCS.forEach(doc => {
+            masterDocs.forEach((doc, idx) => {
                 const itemDiv = document.createElement('div');
-                itemDiv.className = 'group border border-slate-200 hover:border-blue-300 rounded-xl p-3 bg-slate-50/50 hover:bg-white transition space-y-2';
+                itemDiv.className = 'group border border-slate-200 hover:border-blue-300 rounded-xl p-3 bg-slate-50/50 hover:bg-white transition space-y-2 shadow-xs';
                 itemDiv.id = `card_${doc.key}`;
+
+                const isFirst = idx === 0;
+                const isLast = idx === masterDocs.length - 1;
 
                 itemDiv.innerHTML = `
                     <div class="flex items-center justify-between gap-2">
-                        <div class="flex items-center gap-2.5 flex-1 min-w-0">
+                        <div class="flex items-center gap-2 flex-1 min-w-0">
+                            <!-- Tombol Naik / Turun Urutan -->
+                            <div class="flex flex-col gap-0.5 shrink-0">
+                                <button type="button" class="btn-move-up p-1 rounded text-slate-400 hover:text-blue-600 hover:bg-blue-100 disabled:opacity-20 disabled:hover:bg-transparent disabled:cursor-not-allowed transition"
+                                    title="Pindahkan ke atas" ${isFirst ? 'disabled' : ''}>
+                                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 15l7-7 7 7"/></svg>
+                                </button>
+                                <button type="button" class="btn-move-down p-1 rounded text-slate-400 hover:text-blue-600 hover:bg-blue-100 disabled:opacity-20 disabled:hover:bg-transparent disabled:cursor-not-allowed transition"
+                                    title="Pindahkan ke bawah" ${isLast ? 'disabled' : ''}>
+                                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg>
+                                </button>
+                            </div>
+
+                            <!-- Checkbox -->
                             <input type="checkbox" id="chk_${doc.key}" checked
-                                class="w-4 h-4 text-blue-600 rounded border-slate-300 focus:ring-blue-500 cursor-pointer">
-                            <span class="text-base select-none">${doc.icon}</span>
+                                class="w-4 h-4 text-blue-600 rounded border-slate-300 focus:ring-blue-500 cursor-pointer shrink-0">
+
+                            <!-- Nomor Urut & Ikon -->
+                            <span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-slate-200/80 text-[10px] font-bold text-slate-700 shrink-0">
+                                ${idx + 1}
+                            </span>
+                            <span class="text-base select-none shrink-0">${doc.icon || '📄'}</span>
+
+                            <!-- Label & Status Dokumen -->
                             <div class="min-w-0 flex-1">
-                                <label for="chk_${doc.key}" class="block text-xs font-bold text-slate-800 truncate cursor-pointer hover:text-blue-600">
-                                    ${doc.label}
-                                </label>
+                                <div class="flex items-center gap-1.5 flex-wrap">
+                                    <label for="chk_${doc.key}" class="block text-xs font-bold text-slate-800 truncate cursor-pointer hover:text-blue-600">
+                                        ${escapeHtml(doc.name)}
+                                    </label>
+                                    ${doc.isCustom ? '<span class="text-[9px] font-semibold px-1.5 py-0.2 bg-purple-50 text-purple-700 border border-purple-200 rounded shrink-0">Tambahan</span>' : ''}
+                                </div>
                                 <div id="status_${doc.key}" class="text-[11px] text-slate-400 truncate">
                                     Memeriksa penyimpanan...
                                 </div>
                             </div>
                         </div>
 
-                        <div class="flex items-center gap-1.5 shrink-0">
+                        <!-- Tombol Aksi: Lihat, Hapus File, Hapus Dokumen -->
+                        <div class="flex items-center gap-1 shrink-0">
                             <button type="button" id="btnView_${doc.key}" title="Lihat Berkas"
                                 class="hidden p-1.5 text-slate-500 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition text-xs font-semibold">
                                 👁️ Lihat
                             </button>
-                            <button type="button" id="btnDelete_${doc.key}" title="Hapus Berkas"
+                            <button type="button" id="btnDelete_${doc.key}" title="Hapus Berkas Ini"
                                 class="hidden p-1.5 text-slate-400 hover:text-rose-600 hover:bg-rose-50 rounded-lg transition text-xs font-semibold">
-                                🗑️ Hapus
+                                🗑️ Berkas
                             </button>
+                            ${doc.isCustom ? `
+                            <button type="button" class="btn-remove-doc p-1.5 text-slate-400 hover:text-rose-600 hover:bg-rose-50 rounded-lg transition text-xs font-bold" title="Hapus Dokumen dari Daftar">
+                                ✕
+                            </button>` : ''}
                         </div>
                     </div>
 
-                    <div class="flex items-center gap-2 pt-1">
+                    <!-- Area Unggah Berkas -->
+                    <div class="flex items-center gap-2 pt-0.5">
                         <label for="${doc.id}" class="w-full flex items-center justify-center gap-2 px-3 py-1.5 border border-dashed border-slate-300 group-hover:border-blue-400 rounded-lg bg-white hover:bg-blue-50/40 cursor-pointer text-xs text-slate-600 font-medium transition">
                             <svg class="w-3.5 h-3.5 text-slate-400 group-hover:text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/>
                             </svg>
-                            <span id="btnUploadText_${doc.key}">Pilih berkas ${doc.type.toUpperCase()}</span>
+                            <span id="btnUploadText_${doc.key}">Pilih berkas (${doc.acceptDesc || 'PDF/Gambar'})</span>
                         </label>
                         <input type="file" id="${doc.id}" accept="${doc.accept}" class="hidden">
                     </div>
                 `;
 
                 container.appendChild(itemDiv);
+
+                // Event listener tombol urutan
+                itemDiv.querySelector('.btn-move-up')?.addEventListener('click', () => moveDocUp(doc.key));
+                itemDiv.querySelector('.btn-move-down')?.addEventListener('click', () => moveDocDown(doc.key));
+
+                // Event listener hapus dokumen custom
+                if (doc.isCustom) {
+                    itemDiv.querySelector('.btn-remove-doc')?.addEventListener('click', () => removeCustomDoc(doc.key));
+                }
 
                 // Event listener checkbox
                 const chk = itemDiv.querySelector(`#chk_${doc.key}`);
@@ -656,7 +849,7 @@
                         } catch (err) {
                             alert('Gagal menyimpan berkas: ' + err.message);
                         } finally {
-                            fileInput.value = ''; // Reset agar bisa memilih file yang sama jika diedit
+                            fileInput.value = '';
                         }
                     }
                 });
@@ -666,14 +859,15 @@
                 btnView.addEventListener('click', async () => {
                     const stored = await getFileFromDB(doc.key);
                     if (stored && stored.blob) {
-                        openPreviewModal(stored.blob, stored.name, doc.type);
+                        const isPdf = stored.type === 'application/pdf' || (stored.name && stored.name.toLowerCase().endsWith('.pdf'));
+                        openPreviewModal(stored.blob, stored.name, isPdf ? 'pdf' : 'image');
                     }
                 });
 
-                // Event listener tombol hapus
+                // Event listener tombol hapus berkas
                 const btnDelete = itemDiv.querySelector(`#btnDelete_${doc.key}`);
                 btnDelete.addEventListener('click', async () => {
-                    if (confirm(`Yakin ingin menghapus ${doc.label}?`)) {
+                    if (confirm(`Yakin ingin menghapus berkas untuk ${doc.name}?`)) {
                         await deleteFileFromDB(doc.key);
                         showToast(`Berkas telah dihapus.`, false);
                         await refreshStorageStatus();
@@ -706,12 +900,110 @@
             });
         }
 
+        // --- FUNGSI MENGATUR URUTAN & DOKUMEN MASTER ---
+        function moveDocUp(key) {
+            const idx = masterDocs.findIndex(d => d.key === key);
+            if (idx > 0) {
+                const item = masterDocs.splice(idx, 1)[0];
+                masterDocs.splice(idx - 1, 0, item);
+                saveMasterDocs();
+                renderMasterDocsUI();
+                refreshStorageStatus();
+                showToast('Urutan berkas diperbarui.');
+            }
+        }
+
+        function moveDocDown(key) {
+            const idx = masterDocs.findIndex(d => d.key === key);
+            if (idx >= 0 && idx < masterDocs.length - 1) {
+                const item = masterDocs.splice(idx, 1)[0];
+                masterDocs.splice(idx + 1, 0, item);
+                saveMasterDocs();
+                renderMasterDocsUI();
+                refreshStorageStatus();
+                showToast('Urutan berkas diperbarui.');
+            }
+        }
+
+        function addCustomDoc(name, icon, format) {
+            const timestamp = Date.now();
+            const key = `custom_${timestamp}`;
+            const id = `file_${key}`;
+
+            let accept = 'application/pdf,image/jpeg,image/png,image/webp,image/jpg';
+            let acceptDesc = 'PDF/Gambar';
+            let type = 'both';
+
+            if (format === 'pdf') {
+                accept = 'application/pdf';
+                acceptDesc = 'PDF';
+                type = 'pdf';
+            } else if (format === 'image') {
+                accept = 'image/jpeg,image/png,image/webp,image/jpg';
+                acceptDesc = 'JPG/PNG';
+                type = 'image';
+            }
+
+            const docObj = {
+                id: id,
+                key: key,
+                name: name,
+                shortName: name,
+                emailName: name,
+                accept: accept,
+                acceptDesc: acceptDesc,
+                type: type,
+                icon: icon || '📜',
+                isCustom: true,
+                isPhoto: false
+            };
+
+            masterDocs.push(docObj);
+            saveMasterDocs();
+            renderMasterDocsUI();
+            refreshStorageStatus();
+            showToast(`Dokumen "${name}" berhasil ditambahkan ke daftar!`);
+
+            setTimeout(() => {
+                const card = document.getElementById(`card_${key}`);
+                if (card) {
+                    card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    card.classList.add('ring-2', 'ring-blue-500');
+                    setTimeout(() => card.classList.remove('ring-2', 'ring-blue-500'), 1800);
+                }
+            }, 100);
+        }
+
+        async function removeCustomDoc(key) {
+            const doc = masterDocs.find(d => d.key === key);
+            if (!doc) return;
+            if (confirm(`Hapus dokumen "${doc.name}" dari daftar?\nBerkas yang telah diunggah untuk dokumen ini juga akan dihapus.`)) {
+                await deleteFileFromDB(key);
+                masterDocs = masterDocs.filter(d => d.key !== key);
+                localStorage.removeItem(`chk_${key}`);
+                saveMasterDocs();
+                renderMasterDocsUI();
+                await refreshStorageStatus();
+                showToast(`Dokumen "${doc.name}" telah dihapus.`);
+            }
+        }
+
+        function resetMasterDocs() {
+            if (confirm('Kembalikan susunan dan daftar berkas master ke pengaturan bawaan (5 berkas utama)?\nCatatan: Berkas yang telah Anda unggah tetap tersimpan.')) {
+                masterDocs = JSON.parse(JSON.stringify(DEFAULT_MASTER_DOCS));
+                saveMasterDocs();
+                renderMasterDocsUI();
+                refreshStorageStatus();
+                showToast('Susunan berkas dikembalikan ke pengaturan bawaan.');
+            }
+        }
+
         // --- REFRESH STORAGE STATUS ---
         async function refreshStorageStatus() {
             let totalAvailable = 0;
             let totalActiveSize = 0;
 
-            for (const doc of MASTER_DOCS) {
+            for (const doc of masterDocs) {
                 const stored = await getFileFromDB(doc.key);
                 const statusEl = document.getElementById(`status_${doc.key}`);
                 const btnView = document.getElementById(`btnView_${doc.key}`);
@@ -719,24 +1011,26 @@
                 const btnUploadText = document.getElementById(`btnUploadText_${doc.key}`);
                 const chk = document.getElementById(`chk_${doc.key}`);
 
+                if (!statusEl) continue;
+
                 if (stored && stored.blob) {
                     totalAvailable++;
                     const sizeKB = (stored.size / 1024).toFixed(0);
                     const sizeMB = (stored.size / (1024 * 1024)).toFixed(2);
                     const sizeStr = stored.size > 1024 * 1024 ? `${sizeMB} MB` : `${sizeKB} KB`;
 
-                    if (chk.checked) totalActiveSize += stored.size;
+                    if (chk && chk.checked) totalActiveSize += stored.size;
 
                     statusEl.innerHTML = `<span class="text-emerald-600 font-semibold">✓ ${escapeHtml(stored.name)}</span> <span class="text-slate-400">(${sizeStr})</span>`;
-                    btnView.classList.remove('hidden');
-                    btnDelete.classList.remove('hidden');
-                    btnUploadText.textContent = 'Ganti Berkas';
+                    if (btnView) btnView.classList.remove('hidden');
+                    if (btnDelete) btnDelete.classList.remove('hidden');
+                    if (btnUploadText) btnUploadText.textContent = 'Ganti Berkas';
                 } else {
                     statusEl.textContent = 'Belum ada berkas tersimpan';
                     statusEl.className = 'text-[11px] text-slate-400 truncate';
-                    btnView.classList.add('hidden');
-                    btnDelete.classList.add('hidden');
-                    btnUploadText.textContent = `Pilih berkas ${doc.type.toUpperCase()}`;
+                    if (btnView) btnView.classList.add('hidden');
+                    if (btnDelete) btnDelete.classList.add('hidden');
+                    if (btnUploadText) btnUploadText.textContent = `Pilih berkas (${doc.acceptDesc || 'PDF/Gambar'})`;
                 }
             }
 
@@ -746,23 +1040,26 @@
         async function updateSummaryInfo() {
             let activeCount = 0;
             const names = [];
-            for (const doc of MASTER_DOCS) {
+            for (const doc of masterDocs) {
                 const chk = document.getElementById(`chk_${doc.key}`);
                 const stored = await getFileFromDB(doc.key);
                 if (chk && chk.checked && stored) {
                     activeCount++;
-                    names.push(doc.emailName);
+                    names.push(doc.emailName || doc.shortName || doc.name);
                 }
             }
-            document.getElementById('fileSizeInfo').textContent = `Total berkas terpilih: ${activeCount} dokumen master + Surat Lamaran`;
+            const fileSizeInfo = document.getElementById('fileSizeInfo');
+            if (fileSizeInfo) {
+                fileSizeInfo.textContent = `Total berkas terpilih: ${activeCount} dokumen master + Surat Lamaran`;
+            }
             emailAttachmentNames = names;
             refreshEmailDraft();
         }
 
-        // Tombol Kosongkan Semua
-        document.getElementById('btnClearAllFiles').addEventListener('click', async () => {
+        // Tombol Kosongkan Semua Berkas
+        document.getElementById('btnClearAllFiles')?.addEventListener('click', async () => {
             if (confirm('Apakah Anda yakin ingin menghapus SEMUA berkas master yang tersimpan di browser ini?')) {
-                for (const doc of MASTER_DOCS) {
+                for (const doc of masterDocs) {
                     await deleteFileFromDB(doc.key);
                 }
                 showToast('Semua berkas master telah dikosongkan.', false);
@@ -770,7 +1067,12 @@
             }
         });
 
+        // Tombol Reset Urutan Berkas
+        document.getElementById('btnResetDocOrder')?.addEventListener('click', resetMasterDocs);
+
         // --- DATA PROFIL & AUTO-SAVE KE LOCALSTORAGE ---
+        const DEFAULT_COMPETENCY = 'Saya merupakan lulusan D-III Rekam Medis dan Informasi Kesehatan dari Poltekkes Kemenkes Malang. Saya memiliki pemahaman dalam pendaftaran pasien, komunikasi efektif, pengelolaan rekam medis & Rekam Medis Elektronik (RME), serta pengkodean penyakit (ICD-10 & ICD-9-CM) sesuai standar regulasi pelayanan kesehatan.';
+
         const DEFAULT_PROFILE = {
             profName: 'M. Mahyan Masbuby',
             profCity: 'Pasuruan, Jawa Timur',
@@ -778,30 +1080,86 @@
             profEmail: 'mahyanmasbuby2003@gmail.com',
             profLinkedin: 'www.linkedin.com/in/mahyan',
             profEdu: 'D-III Rekam Medis dan Informasi Kesehatan, Poltekkes Kemenkes Malang',
-            profCompetency: 'Saya merupakan lulusan D-III Rekam Medis dan Informasi Kesehatan dari Poltekkes Kemenkes Malang. Saya memiliki pemahaman dalam pendaftaran pasien, komunikasi efektif, pengelolaan rekam medis & Rekam Medis Elektronik (RME), serta pengkodean penyakit (ICD-10 & ICD-9-CM) sesuai standar regulasi pelayanan kesehatan.'
+            profCompetency: DEFAULT_COMPETENCY
         };
 
         const profileFields = Object.keys(DEFAULT_PROFILE);
+
+        function updateCompetencyBadge() {
+            const el = document.getElementById('profCompetency');
+            const badge = document.getElementById('competencyStatusBadge');
+            if (!el || !badge) return;
+            if (el.value.trim()) {
+                badge.textContent = 'Kalimat Kustom Aktif';
+                badge.className = 'text-[10px] font-semibold px-2 py-0.5 rounded bg-emerald-50 text-emerald-700 border border-emerald-200 shrink-0';
+            } else {
+                badge.textContent = 'Default Aktif (D-III Rekam Medis)';
+                badge.className = 'text-[10px] font-semibold px-2 py-0.5 rounded bg-blue-50 text-blue-700 border border-blue-200 shrink-0';
+            }
+        }
 
         function initProfileFields() {
             profileFields.forEach(id => {
                 const el = document.getElementById(id);
                 if (!el) return;
-                const saved = localStorage.getItem(`profile_${id}`);
-                if (saved !== null) {
-                    el.value = saved;
-                } else if (DEFAULT_PROFILE[id]) {
-                    el.value = DEFAULT_PROFILE[id];
+
+                if (id === 'profCompetency') {
+                    const saved = localStorage.getItem(`profile_${id}`);
+                    if (saved !== null) {
+                        el.value = saved;
+                    } else {
+                        el.value = ''; // Biarkan kosong agar placeholder dan badge Default terlihat jelas
+                    }
+                    updateCompetencyBadge();
+
+                    el.addEventListener('input', () => {
+                        localStorage.setItem(`profile_${id}`, el.value);
+                        updateCompetencyBadge();
+                    });
+                } else {
+                    const saved = localStorage.getItem(`profile_${id}`);
+                    if (saved !== null) {
+                        el.value = saved;
+                    } else if (DEFAULT_PROFILE[id]) {
+                        el.value = DEFAULT_PROFILE[id];
+                    }
+                    el.addEventListener('input', () => localStorage.setItem(`profile_${id}`, el.value));
                 }
-                el.addEventListener('input', () => localStorage.setItem(`profile_${id}`, el.value));
+            });
+
+            // Tombol Muat Kalimat Bawaan
+            document.getElementById('btnFillDefaultComp')?.addEventListener('click', () => {
+                const el = document.getElementById('profCompetency');
+                if (el) {
+                    el.value = DEFAULT_COMPETENCY;
+                    localStorage.setItem('profile_profCompetency', el.value);
+                    updateCompetencyBadge();
+                    showToast('Kalimat bawaan dimuat. Anda dapat mengeditnya.');
+                }
+            });
+
+            // Tombol Kosongkan Kalimat
+            document.getElementById('btnClearComp')?.addEventListener('click', () => {
+                const el = document.getElementById('profCompetency');
+                if (el) {
+                    el.value = '';
+                    localStorage.setItem('profile_profCompetency', '');
+                    updateCompetencyBadge();
+                    showToast('Kolom dikosongkan. Surat otomatis memakai kalimat bawaan.');
+                }
             });
         }
 
         document.getElementById('btnResetProfile').addEventListener('click', () => {
-            if (confirm('Kembalikan data profil dan paragraf surat ke pengaturan default awal?')) {
+            if (confirm('Kembalikan data profil pengirim ke pengaturan default awal?')) {
                 profileFields.forEach(id => {
                     const el = document.getElementById(id);
-                    if (el && DEFAULT_PROFILE[id]) {
+                    if (!el) return;
+                    if (id === 'profCompetency') {
+                        el.value = '';
+                        localStorage.removeItem(`profile_${id}`);
+                        updateCompetencyBadge();
+                    } else if (DEFAULT_PROFILE[id]) {
                         el.value = DEFAULT_PROFILE[id];
                         localStorage.setItem(`profile_${id}`, DEFAULT_PROFILE[id]);
                     }
@@ -1079,8 +1437,9 @@
             ], { align: 'justify' });
             y -= paraGap;
 
-            // 8. PARAGRAF KOMPETENSI (mendukung beberapa paragraf via baris baru)
-            (data.profCompetency || '').split(/\r?\n+/).map(p => p.trim()).filter(Boolean).forEach(p => {
+            // 8. PARAGRAF KOMPETENSI (mendukung beberapa paragraf via baris baru; fallback ke kalimat default bila kosong)
+            const compText = (data.profCompetency && data.profCompetency.trim()) || DEFAULT_COMPETENCY;
+            compText.split(/\r?\n+/).map(p => p.trim()).filter(Boolean).forEach(p => {
                 y = text([{ text: p, font: R }], { align: 'justify' });
                 y -= paraGap;
             });
@@ -1100,14 +1459,14 @@
             });
             y -= paraGap - 2 * s;
 
-            // 10. DAFTAR LAMPIRAN (bernomor, hanging indent, dinamis sesuai berkas terpilih)
+            // 10. DAFTAR LAMPIRAN (bernomor, hanging indent, dinamis sesuai urutan dan berkas terpilih)
             if (attachments.length) {
                 y = text([{ text: 'Sebagai bahan pertimbangan, berikut berkas pendukung yang saya lampirkan:', font: R }]);
                 const numX = left + 20 * s;
                 const numTextX = left + 38 * s;
                 attachments.forEach((att, i) => {
                     if (draw) page.drawText(`${i + 1}.`, { x: numX, y, size, font: R, color: black });
-                    y = text([{ text: att.shortName, font: R }], { x: numTextX, maxWidth: right - numTextX });
+                    y = text([{ text: att.shortName || att.name, font: R }], { x: numTextX, maxWidth: right - numTextX });
                     y -= 2 * s;
                 });
                 y -= paraGap - 2 * s;
@@ -1152,6 +1511,7 @@
                 throw new Error('Library PDF-Lib belum selesai dimuat. Periksa koneksi internet Anda atau muat ulang halaman.');
             }
 
+            const rawCompetency = document.getElementById('profCompetency')?.value?.trim();
             const data = {
                 targetOrg: document.getElementById('targetOrg').value.trim(),
                 jobPosition: document.getElementById('jobPosition').value.trim(),
@@ -1163,7 +1523,7 @@
                 profEmail: document.getElementById('profEmail').value.trim(),
                 profLinkedin: document.getElementById('profLinkedin').value.trim(),
                 profEdu: document.getElementById('profEdu').value.trim(),
-                profCompetency: document.getElementById('profCompetency').value.trim()
+                profCompetency: rawCompetency || DEFAULT_COMPETENCY
             };
 
             if (!data.targetOrg) {
@@ -1173,9 +1533,9 @@
                 throw new Error('Mohon isi Posisi yang dilamar.');
             }
 
-            // Kumpulkan berkas yang dicentang & tersedia di database
+            // Kumpulkan berkas yang dicentang & tersedia di database sesuai urutan masterDocs
             const activeAttachments = [];
-            for (const doc of MASTER_DOCS) {
+            for (const doc of masterDocs) {
                 const chk = document.getElementById(`chk_${doc.key}`);
                 if (chk && chk.checked) {
                     const stored = await getFileFromDB(doc.key);
@@ -1183,7 +1543,8 @@
                         activeAttachments.push({
                             ...doc,
                             blob: stored.blob,
-                            fileName: stored.name
+                            fileName: stored.name,
+                            storedType: stored.type
                         });
                     }
                 }
@@ -1196,14 +1557,18 @@
             // 1. Tambah Halaman Surat Lamaran
             await createCoverLetterPage(mergedPdf, data, activeAttachments);
 
-            // 2. Gabungkan Berkas PDF Master dengan proteksi ignoreEncryption: true
+            // 2. Gabungkan Berkas Master (PDF & Gambar) sesuai urutan yang diatur
             let currentStep = 15;
             const stepIncrement = activeAttachments.length > 0 ? (75 / activeAttachments.length) : 50;
 
             for (const doc of activeAttachments) {
                 currentStep += stepIncrement;
-                if (doc.type === 'pdf') {
-                    onProgress(`Menggabungkan ${doc.shortName}...`, Math.min(Math.round(currentStep), 85));
+                const isPdf = doc.type === 'pdf' || 
+                              (doc.fileName && doc.fileName.toLowerCase().endsWith('.pdf')) || 
+                              (doc.storedType === 'application/pdf');
+
+                if (isPdf) {
+                    onProgress(`Menggabungkan ${doc.shortName || doc.name}...`, Math.min(Math.round(currentStep), 85));
                     try {
                         const arrayBuffer = await doc.blob.arrayBuffer();
                         // ignoreEncryption: true menangani PDF bertanda tangan digital atau proteksi izin baca
@@ -1211,69 +1576,90 @@
                         const copiedPages = await mergedPdf.copyPages(loadedPdf, loadedPdf.getPageIndices());
                         copiedPages.forEach(p => mergedPdf.addPage(p));
                     } catch (err) {
-                        console.error(`Gagal menggabungkan PDF ${doc.shortName}:`, err);
+                        console.error(`Gagal menggabungkan PDF ${doc.shortName || doc.name}:`, err);
                         throw new Error(`Berkas "${doc.fileName}" tidak dapat digabungkan: ${err.message}. Pastikan file bukan PDF rusak.`);
                     }
-                } else if (doc.type === 'image') {
-                    onProgress(`Menyematkan ${doc.shortName}...`, Math.min(Math.round(currentStep), 85));
+                } else {
+                    // Penanganan berkas gambar (Pasfoto atau Scan Dokumen JPG/PNG/WebP)
+                    onProgress(`Menyematkan ${doc.shortName || doc.name}...`, Math.min(Math.round(currentStep), 85));
                     try {
                         const jpegBuffer = await convertImageToJpegBuffer(doc.blob);
                         const embeddedImage = await mergedPdf.embedJpg(jpegBuffer);
 
-                        // Buat halaman lampiran pasfoto yang rapi dan profesional
-                        const photoPage = mergedPdf.addPage([595.28, 841.89]);
+                        const docPage = mergedPdf.addPage([595.28, 841.89]);
                         const fontBold = await mergedPdf.embedFont(StandardFonts.HelveticaBold);
                         const fontRegular = await mergedPdf.embedFont(StandardFonts.Helvetica);
 
-                        // Header Halaman Pasfoto
-                        photoPage.drawText('LAMPIRAN: PASFOTO TERBARU', {
+                        const docTitle = sanitizeTextForWinAnsi((doc.shortName || doc.name || 'DOKUMEN').toUpperCase());
+                        const safeApplicant = sanitizeTextForWinAnsi(data.profName || '');
+                        const safePosition = sanitizeTextForWinAnsi(data.jobPosition || '');
+
+                        // Header Halaman Lampiran
+                        docPage.drawText(`LAMPIRAN: ${docTitle}`, {
                             x: 54,
                             y: 841.89 - 50,
                             size: 11,
                             font: fontBold,
                             color: rgb(0.1, 0.1, 0.1)
                         });
-                        photoPage.drawText(`${sanitizeTextForWinAnsi(data.profName)} - ${sanitizeTextForWinAnsi(data.jobPosition)}`, {
+                        docPage.drawText(`${safeApplicant} - ${safePosition}`, {
                             x: 54,
                             y: 841.89 - 64,
                             size: 9.5,
                             font: fontRegular,
                             color: rgb(0.3, 0.3, 0.3)
                         });
-                        photoPage.drawLine({
+                        docPage.drawLine({
                             start: { x: 54, y: 841.89 - 72 },
                             end: { x: 595.28 - 54, y: 841.89 - 72 },
                             thickness: 0.5,
                             color: rgb(0.8, 0.8, 0.8)
                         });
 
-                        // Proporsi pasfoto standar (lebar ~160pt)
-                        const imgWidth = 160;
-                        const imgHeight = (embeddedImage.height / embeddedImage.width) * imgWidth;
-                        const posX = (595.28 - imgWidth) / 2;
-                        const posY = (841.89 - imgHeight) / 2 + 10;
+                        if (doc.isPhoto) {
+                            // Proporsi pasfoto standar (lebar ~160pt) dengan bingkai foto rapi
+                            const imgWidth = 160;
+                            const imgHeight = (embeddedImage.height / embeddedImage.width) * imgWidth;
+                            const posX = (595.28 - imgWidth) / 2;
+                            const posY = (841.89 - imgHeight) / 2 + 10;
 
-                        // Bingkai foto elegan
-                        photoPage.drawRectangle({
-                            x: posX - 4,
-                            y: posY - 4,
-                            width: imgWidth + 8,
-                            height: imgHeight + 8,
-                            borderColor: rgb(0.75, 0.78, 0.85),
-                            borderWidth: 1,
-                            color: rgb(0.98, 0.98, 1)
-                        });
+                            docPage.drawRectangle({
+                                x: posX - 4,
+                                y: posY - 4,
+                                width: imgWidth + 8,
+                                height: imgHeight + 8,
+                                borderColor: rgb(0.75, 0.78, 0.85),
+                                borderWidth: 1,
+                                color: rgb(0.98, 0.98, 1)
+                            });
 
-                        photoPage.drawImage(embeddedImage, {
-                            x: posX,
-                            y: posY,
-                            width: imgWidth,
-                            height: imgHeight
-                        });
+                            docPage.drawImage(embeddedImage, {
+                                x: posX,
+                                y: posY,
+                                width: imgWidth,
+                                height: imgHeight
+                            });
+                        } else {
+                            // Berkas dokumen gambar umum (Scan KTP, Ijazah/Sertifikat): fit proporsional pada halaman A4
+                            const maxW = 487.28;
+                            const maxH = 680;
+                            const scale = Math.min(maxW / embeddedImage.width, maxH / embeddedImage.height, 1);
+                            const finalW = embeddedImage.width * scale;
+                            const finalH = embeddedImage.height * scale;
+                            const posX = (595.28 - finalW) / 2;
+                            const posY = (841.89 - 80 - finalH) / 2 + 10;
+
+                            docPage.drawImage(embeddedImage, {
+                                x: posX,
+                                y: Math.max(45, posY),
+                                width: finalW,
+                                height: finalH
+                            });
+                        }
 
                     } catch (err) {
-                        console.error('Gagal menyematkan foto:', err);
-                        throw new Error(`Gagal menyematkan pasfoto: ${err.message}`);
+                        console.error('Gagal menyematkan gambar:', err);
+                        throw new Error(`Gagal menyematkan gambar "${doc.fileName}": ${err.message}`);
                     }
                 }
             }
@@ -1591,11 +1977,87 @@
             refreshEmailDraft();
         }
 
+        // --- MODAL TAMBAH BERKAS DOKUMEN ---
+        function initAddDocModal() {
+            const modal = document.getElementById('addDocModal');
+            const btnOpen = document.getElementById('btnOpenAddDocModal');
+            const btnClose = document.getElementById('btnCloseAddDocModal');
+            const btnCancel = document.getElementById('btnCancelAddDoc');
+            const btnConfirm = document.getElementById('btnConfirmAddDoc');
+            const nameInput = document.getElementById('newDocName');
+            const formatSelect = document.getElementById('newDocFormat');
+            let selectedIcon = '📜';
+
+            function openModal() {
+                modal.classList.remove('hidden');
+                nameInput.value = '';
+                formatSelect.value = 'both';
+                selectedIcon = '📜';
+                updateIconPickerUI();
+                setTimeout(() => nameInput.focus(), 50);
+            }
+
+            function closeModal() {
+                modal.classList.add('hidden');
+            }
+
+            function updateIconPickerUI() {
+                document.querySelectorAll('#newDocIconPicker .icon-opt').forEach(btn => {
+                    if (btn.dataset.icon === selectedIcon) {
+                        btn.className = 'icon-opt w-8 h-8 rounded-lg border-2 border-blue-600 bg-blue-50 flex items-center justify-center text-sm shadow-xs';
+                    } else {
+                        btn.className = 'icon-opt w-8 h-8 rounded-lg border border-slate-200 hover:bg-slate-100 flex items-center justify-center text-sm';
+                    }
+                });
+            }
+
+            btnOpen?.addEventListener('click', openModal);
+            btnClose?.addEventListener('click', closeModal);
+            btnCancel?.addEventListener('click', closeModal);
+            modal?.addEventListener('click', (e) => {
+                if (e.target === modal) closeModal();
+            });
+
+            // Preset Chips
+            document.querySelectorAll('#quickDocChips .chip-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    nameInput.value = btn.dataset.name;
+                    if (btn.dataset.icon) {
+                        selectedIcon = btn.dataset.icon;
+                        updateIconPickerUI();
+                    }
+                    nameInput.focus();
+                });
+            });
+
+            // Icon Picker
+            document.querySelectorAll('#newDocIconPicker .icon-opt').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    selectedIcon = btn.dataset.icon;
+                    updateIconPickerUI();
+                });
+            });
+
+            // Konfirmasi Tambah Dokumen
+            btnConfirm?.addEventListener('click', () => {
+                const name = nameInput.value.trim();
+                if (!name) {
+                    alert('Silakan masukkan nama berkas dokumen persyaratan.');
+                    nameInput.focus();
+                    return;
+                }
+                addCustomDoc(name, selectedIcon, formatSelect.value);
+                closeModal();
+            });
+        }
+
         // --- INISIALISASI AWAL ---
         window.addEventListener('DOMContentLoaded', async () => {
+            loadMasterDocs();
             renderMasterDocsUI();
             initProfileFields();
             initLetterDate();
+            initAddDocModal();
             initEmailDraft();
             await refreshStorageStatus();
         });
